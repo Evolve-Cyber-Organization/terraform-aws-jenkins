@@ -3,7 +3,9 @@ resource "aws_instance" "jenkins_worker1" {
   ami                         = "${data.aws_ami.centos.id}"
   key_name                    = "${var.key_name}"
   associate_public_ip_address = "true"
-  security_groups             = ["allow_ssh_and_jenkins"]
+  security_groups             = ["${aws_security_group.allow_ssh_and_jenkins.id}"]
+  subnet_id = "${aws_subnet.main.id}"
+
 
   provisioner "file" {
     connection {

@@ -3,7 +3,6 @@ module "jenkins_master" {
    user 		= 	"${var.user}"
    domain 		= 	"${var.domain}"
    region 		= 	"${var.region}"
-   vpc_id 		=	"${var.vpc_id}"
    zone_id 		= 	"${var.zone_id}"
    key_name 		= 	"${var.key_name}"
    instance_type 	= 	"${var.instance_type}"

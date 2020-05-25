@@ -19,8 +19,9 @@ resource "aws_instance" "jenkins_master" {
   ami                         = "${data.aws_ami.centos.id}"
   key_name                    = "${var.key_name}"
   associate_public_ip_address = "true"
-  security_groups             = ["allow_ssh_and_jenkins"]
-  iam_instance_profile = "${aws_iam_instance_profile.jenkins_profile.name}",
+  security_groups             = ["${aws_security_group.allow_ssh_and_jenkins.id}"]
+  iam_instance_profile = "${aws_iam_instance_profile.jenkins_profile.name}"
+  subnet_id = "${aws_subnet.main.id}"
 
 
   provisioner "file" {

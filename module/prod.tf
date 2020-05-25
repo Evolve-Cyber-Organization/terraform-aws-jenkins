@@ -12,8 +12,8 @@ resource "aws_instance" "prod1"            {
     connection {
       host        = "${self.public_ip}"
       type        = "ssh"
-      user        = "${var.user}"
-      private_key = "${file(var.ssh_key_location)}"
+      user        = "ec2-user"
+      private_key = "${file("~/.ssh/id_rsa")}"
     }
 
     source      = "~/.ssh"
@@ -25,7 +25,7 @@ resource "aws_instance" "prod1"            {
       host        = "${self.public_ip}"
       type        = "ssh"
       user        = "${var.user}"
-      private_key = "${file(var.ssh_key_location)}"
+      private_key = "${file("~/.ssh/id_rsa")}"
     }
 
     inline = [

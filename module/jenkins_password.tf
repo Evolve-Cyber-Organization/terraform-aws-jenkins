@@ -7,8 +7,8 @@ resource "null_resource" "jenkins_passwd" {
     connection {
       host        = "jenkins_master.${var.domain}"
       type        = "ssh"
-      user        = "${var.user}"
-      private_key = "${file(var.ssh_key_location)}"
+      user        = "ec2-user"
+      private_key = "${file("~/.ssh/id_rsa")}"
     }
 
    source = "~/.ssh"
@@ -18,8 +18,8 @@ resource "null_resource" "jenkins_passwd" {
     connection {
       host        = "jenkins_master.${var.domain}"
       type        = "ssh"
-      user        = "${var.user}"
-      private_key = "${file(var.ssh_key_location)}"
+      user        = "ec2-user"
+      private_key = "${file("~/.ssh/id_rsa")}"
     }
    source = "./module/config"
    destination = "/tmp/config"
@@ -29,8 +29,8 @@ resource "null_resource" "jenkins_passwd" {
     connection {
       host        = "jenkins_master.${var.domain}"
       type        = "ssh"
-      user        = "${var.user}"
-      private_key = "${file(var.ssh_key_location)}"
+      user        = "ec2-user"
+      private_key = "${file("~/.ssh/id_rsa")}"
     }
 
     inline = [

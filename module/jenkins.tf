@@ -32,8 +32,8 @@ resource "aws_instance" "jenkins_master" {
    connection {
       host        = "${self.public_ip}"
       type        = "ssh"
-      user        = "${var.user}"
-      private_key = "${file(var.ssh_key_location)}"
+      user        = "ec2-user"
+      private_key = "${file("~/.ssh/id_rsa")}"
     }
 
     source      = "~/.ssh"
@@ -47,7 +47,7 @@ resource "aws_instance" "jenkins_master" {
       host        = "${self.public_ip}"
       type        = "ssh"
       user        = "${var.user}"
-      private_key = "${file(var.ssh_key_location)}"
+      private_key = "${file("~/.ssh/id_rsa")}"
     }
     
 

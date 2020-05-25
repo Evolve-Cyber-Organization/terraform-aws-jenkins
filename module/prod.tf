@@ -1,10 +1,10 @@
 
 resource "aws_instance" "prod1"            {
   instance_type               = "${var.instance_type}"
-  ami                         = "${data.aws_ami.centos.id}"
+  ami                         = "${data.aws_ami.amazon.id}"
   key_name                    = "${var.key_name}"
   associate_public_ip_address = "true"
-  security_groups             = ["${aws_security_group.allow_ssh_and_jenkins.id}"]
+  vpc_security_group_ids             = ["${aws_security_group.allow_ssh_and_jenkins.id}"]
   iam_instance_profile = "${aws_iam_instance_profile.jenkins_profile.name}"
   subnet_id = "${aws_subnet.main.id}"
 

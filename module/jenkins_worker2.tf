@@ -1,9 +1,9 @@
 resource "aws_instance" "jenkins_worker2" {
   instance_type               = "${var.instance_type}"
-  ami                         = "${data.aws_ami.centos.id}"
+  ami                         = "${data.aws_ami.amazon.id}"
   key_name                    = "${var.key_name}"
   associate_public_ip_address = "true"
-  security_groups             = ["${aws_security_group.allow_ssh_and_jenkins.id}"]
+  vpc_security_group_ids             = ["${aws_security_group.allow_ssh_and_jenkins.id}"]
   subnet_id = "${aws_subnet.main.id}"
 
 

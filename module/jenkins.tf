@@ -1,25 +1,29 @@
-data "aws_ami" "centos" {
+data "aws_ami" "amazon" {
   most_recent = true
-  owners      = ["679593333241"]
+  owners      = ["137112412989"]
 
   filter {
     name   = "state"
     values = ["available"]
   }
-
+  filter {
+    name   = "virtualization-type"
+    values = ["hvm"]
+  }
   filter {
     name   = "name"
-    values = ["CentOS Linux 7 x86_64 HVM EBS *"]
+    values = ["amzn2-ami-hvm*"]
   }
+
 }
 
 resource "aws_instance" "jenkins_master" {
   depends_on                  = ["aws_key_pair.jenkins"]
   instance_type               = "${var.instance_type}"
-  ami                         = "${data.aws_ami.centos.id}"
+  ami                         = "${data.aws_ami.amazon.id}"
   key_name                    = "${var.key_name}"
   associate_public_ip_address = "true"
-  security_groups             = ["${aws_security_group.allow_ssh_and_jenkins.id}"]
+  vpc_security_group_ids             = ["${aws_security_group.allow_ssh_and_jenkins.id}"]
   iam_instance_profile = "${aws_iam_instance_profile.jenkins_profile.name}"
   subnet_id = "${aws_subnet.main.id}"
 

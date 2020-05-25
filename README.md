@@ -7,7 +7,7 @@
 ### Steps
 
 ```
-git clone https://github.com/farrukh90/infrastructure.git
+git clone https://github.com/Evolve-Cyber-Organization/terraform-aws-jenkins.git
 cd infrastructure/jenkins/
 ls configurations
 ```

@@ -15,4 +15,5 @@ instance_type		            =   	"t2.micro"
 key_name	    	            =	    "jenkins"
 
 
+jenkins_version                 =       "2.222.4-1.1"
 

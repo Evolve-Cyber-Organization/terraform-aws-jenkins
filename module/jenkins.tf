@@ -52,21 +52,21 @@ resource "aws_instance" "jenkins_master" {
     
 
     inline = [
-	"sudo yum install java-1.8.0-openjdk-devel curl -y",
+	      "sudo yum install java-1.8.0-openjdk-devel curl -y",
         "curl --silent --location http://pkg.jenkins-ci.org/redhat-stable/jenkins.repo | sudo tee /etc/yum.repos.d/jenkins.repo",
         "sudo rpm --import https://jenkins-ci.org/redhat/jenkins-ci.org.key",
-        "sudo yum install jenkins -y",
+        "sudo yum install jenkins-${var.jenkins_version} -y",
         "sudo systemctl start jenkins",
 
 
-	"# These commands below installs docker and configure",
+	    "# These commands below installs docker and configure",
         "sudo curl -fsSL https://get.docker.com/ | sh",
-	"sudo systemctl enable docker", 
-	"sudo systemctl start docker",
+	      "sudo systemctl enable docker", 
+	      "sudo systemctl start docker",
         "sudo usermod -aG docker  -s /bin/bash jenkins", 
-	"sudo cp -r /etc/skel/.*	/var/lib/jenkins/",
+	      "sudo cp -r /etc/skel/.*	/var/lib/jenkins/",
         "sudo usermod -aG docker jenkins", 
-	"sudo chmod 777 /var/run/docker.sock",	
+	      "sudo chmod 777 /var/run/docker.sock",	
 
 
 

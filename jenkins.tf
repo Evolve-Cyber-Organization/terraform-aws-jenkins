@@ -5,4 +5,5 @@ module "jenkins_master" {
    zone_id 		= 	"${var.zone_id}"
    key_name 		= 	"${var.key_name}"
    instance_type 	= 	"${var.instance_type}"
+   jenkins_version   =  "${var.jenkins_version}"
 }
